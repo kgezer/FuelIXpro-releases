@@ -90,7 +90,7 @@ tr:nth-child(even) td{ background:#f4f7f9; }
   <div class="alt">Günlük Kullanım Rehberi</div>
   <div class="kutu">
     <div class="bilgi">Belge Sürümü: <b>2.0</b> &nbsp;·&nbsp;
-      Yazılım Sürümü: <b>FuelIXpro v2.0.0</b></div>
+      Yazılım Sürümü: <b>FuelIXpro v2.0.4</b></div>
     <div class="bilgi">Temmuz 2026</div>
   </div>
   <div class="firma">LEGEND TECHNOLOGIES</div>
@@ -131,7 +131,8 @@ sağ üstte <b>Veri Klasörü</b> ve <b>Ayarlar</b> butonları bulunur.</p>
 <li><b>TUTAR (TL)</b> ve <b>MİKTAR (LT)</b>: o anki satışın tutarı ve litresi (büyük yeşil/sarı rakamlar).</li>
 <li><b>BİRİM FİYAT (TL)</b>: kalkan tabancanın litre fiyatı.</li>
 <li><b>Tabanca G1–G4</b>: hangi tabancanın kalkık olduğunu gösteren ışıklar (yeşil = aktif).</li>
-<li>Üst satırdaki mesaj: <b>TABANCA YERİNDE</b>, <b>KARTI OKUTUNUZ</b>, yakıt tipi (dolum sırasında) vb.</li>
+<li>Üst satırdaki mesaj: <b>TABANCA YERİNDE</b>, <b>KARTI OKUTUNUZ</b>, <b>OKUYUCU MEŞGUL</b>
+    (paylaşımlı okuyucuda sıra bekleniyor), yakıt tipi (dolum sırasında) vb.</li>
 <li>Sağ üstteki nokta: <b>yeşil = bağlı</b>, kırmızı = bağlantı hatası.</li>
 <li><b>İkmal Durdur</b>: o pompada akışı durdurur.</li>
 </ul>
@@ -144,14 +145,21 @@ alarm bandı belirir.</p>
 <h1 class="bol" id="b4"><span class="no">4.</span> Yakıt Verme (Adım Adım)</h1>
 <p>Kart ile yetkilendirme açıksa, normal bir dolum şöyle ilerler:</p>
 <ol class="adim">
-<li>Görevli <b>tabancayı kaldırır</b>. Pompa panelinde <b>“KARTI OKUTUNUZ”</b> yazısı belirir.</li>
+<li>Görevli <b>tabancayı kaldırır</b>. Pompa panelinde <b>“KARTI OKUTUNUZ”</b>, kart okuyucu
+    ekranında <b>“POMPA N / KARTI OKUTUNUZ”</b> yazısı belirir (N = kartın isteneceği pompa).</li>
 <li>Ekrandaki uyarıya göre <b>kart okutulur</b>.</li>
-<li>Kart yetkiliyse panel <b>“YETKİLENDİRİLDİ”</b> der ve yakıt akışı başlar; TUTAR/MİKTAR canlı artar.</li>
+<li>Kart yetkiliyse panel <b>“YETKİLENDİRİLDİ”</b> der; okuyucu ekranı ~3 saniye
+    <b>yakıt tipini ve operatörün adını</b> gösterir.</li>
+<li>Ardından okuyucu ekranı 5 saniye <b>tank bilgisini</b> gösterir: üst satırda kalkan tabancanın
+    bağlı olduğu tank (<b>“TANK N”</b>), alt satırda o tanktaki güncel yakıt miktarı
+    (<b>“12345 LT”</b>; seviye ölçümü henüz gelmediyse “-- LT”). Sonra ekran normale döner.</li>
+<li>Yakıt akışı başlar; panelde TUTAR/MİKTAR canlı artar.</li>
 <li>Dolum bitince <b>tabanca yerine konur</b>; panel <b>“TABANCA YERİNDE”</b>e döner. Satış otomatik kaydedilir.</li>
 </ol>
 <div class="cal warn"><div class="cal-b">⚠️ Yetkisiz / tanımsız kart</div><div class="cal-g">Kart tanımlı değilse panelde 3 saniye kırmızı <b>“YETKİSİZ KART!”</b> görünür ve dolum başlamaz. Kart, kullanıcıya atanmış ve yetkili olmalıdır (bkz. Bölüm 5).</div></div>
 <div class="cal note"><div class="cal-b">ℹ️ İkmal Durdur</div><div class="cal-g">Bir dolumu elle kesmek için o pompanın <b>İkmal Durdur</b> butonuna basın; valf kapanır, akış durur. Tabanca yerine konunca işlem tek satır olarak kaydedilir.</div></div>
-<div class="cal note"><div class="cal-b">ℹ️ Kart okuyucu (RFID) ekranında çıkan yazılar</div><div class="cal-g">Operatör genelde bilgisayarı değil, pompa başındaki <b>kart okuyucu ekranını (OLED)</b> görür. Bu ekranda duruma göre şunlar yazar:<br>• <b>KARTI OKUTUNUZ</b> — tabanca kalktı, kart bekleniyor.<br>• <b>YETKILENDIRILDI</b> — kart geçerli, yakıt verilebilir.<br>• <b>YETKISIZ KART</b> — kart tanımsız/yetkisiz, dolum başlamaz.<br>• <b>LIMIT ASIMI</b> — kullanıcının günlük limiti doldu.<br>• <b>Otomasyon'da / Ayarlar Acik!</b> — o sırada bilgisayarda <b>Ayarlar penceresi açık</b>. Ayarlar açıkken güvenlik gereği yeni yetkilendirme bekletilir; bu yüzden tabanca kalksa bile kart sorulmaz. <b>Çözüm:</b> bilgisayarda Ayarlar penceresini kapatın — yetkilendirme hemen kaldığı yerden devam eder ve ekran “KARTI OKUTUNUZ”a döner. (Türkçe karakterler okuyucu ekranında gösterilemediği için yazılar ASCII'dir: “Açık” yerine “Acik”.)</div></div>
+<div class="cal note"><div class="cal-b">ℹ️ Kart okuyucu (RFID) ekranında çıkan yazılar — sırasıyla</div><div class="cal-g">Operatör genelde bilgisayarı değil, pompa başındaki <b>kart okuyucu ekranını (OLED)</b> görür. Normal bir dolumda ekran şu sırayla değişir:<br>1. <b>POMPA N / KARTI OKUTUNUZ</b> — tabanca kalktı, o pompa için kart bekleniyor.<br>2. <b>Yakıt tipi / operatör adı</b> (~3 sn) — kart geçerli, yetki verildi (örn. “DIZEL / Sukru Ozturk”).<br>3. <b>TANK N / 12345 LT</b> (5 sn) — tabancanın bağlı olduğu tank ve içindeki güncel yakıt.<br>4. Ekran <b>normale döner</b>, dolum sürer.<br><br>Diğer durum mesajları:<br>• <b>YETKISIZ KART</b> — kart tanımsız/yetkisiz, dolum başlamaz.<br>• <b>LIMIT ASIMI</b> — kullanıcının günlük limiti doldu.<br>• <b>Otomasyon'da / Ayarlar Acik!</b> — o sırada bilgisayarda <b>Ayarlar penceresi açık</b>. Ayarlar açıkken güvenlik gereği yeni yetkilendirme bekletilir; bu yüzden tabanca kalksa bile kart sorulmaz. <b>Çözüm:</b> bilgisayarda Ayarlar penceresini kapatın — yetkilendirme hemen kaldığı yerden devam eder. (Okuyucu ekranı Türkçe karakter gösteremez; harfler en yakın Latin karşılığına çevrilir: “Şükrü” → “Sukru”, “Açık” → “Acik”.)</div></div>
+<div class="cal note"><div class="cal-b">ℹ️ Ortak (paylaşımlı) kart okuyucu — iki pompa aynı anda kart beklerse</div><div class="cal-g">Bazı kurulumlarda <b>iki pompa tek kart okuyucuyu paylaşır</b>. İki görevli iki tabancayı aynı anda kaldırırsa okuyucu ekranını önce ilk kaldıran pompa kullanır (örn. “POMPA 1 / KARTI OKUTUNUZ”); ikinci pompanın panelinde <b>“OKUYUCU MEŞGUL”</b> yazar ve sırada bekler. Okutulan kart <b>her zaman ekranda yazan pompaya</b> işlenir — yanlış pompaya/hesaba satış yazılmaz. İlk pompanın yetkisi tamamlanınca (yakıt tipi + isim + tank bilgisi ekranlarından sonra) okuyucu <b>otomatik ikinci pompaya geçer</b>: ekranda “POMPA 2 / KARTI OKUTUNUZ” belirir ve ikinci görevli kartını o zaman okutur. İlk tabanca kart okutulmadan geri asılırsa sıra beklemeden ikinci pompaya geçilir.</div></div>
 
 <h1 class="bol" id="b5"><span class="no">5.</span> Kullanıcılar ve Kartlar</h1>
 <p><b>Kullanıcı Bilgileri</b> sekmesine girin (yönetici parolası sorulur; varsayılan
@@ -299,7 +307,16 @@ ile alıp üreticiye iletin; gelen lisans dosyasını yerleştirince program lis
 <tr><td class="k">Alarm Log'da kırmızı satırlar ne?</td>
  <td>Başlamış ama <b>henüz normale dönmemiş</b> (ertelenmiş/susturularak devam eden) alarmlardır.
      “Durum: Aktif” süzgeci yalnız bunları gösterir (Bölüm 8).</td></tr>
+<tr><td class="k">Üst başlıkta turuncu “BYPASS AKTİF” yazısı ne?</td>
+ <td>En az bir pompada RFID bypass açık: kart sorulmadan yetki verilir, satışlar “Kartsız
+     Kullanıcı” yazılır, günlük limit uygulanmaz. Bilerek açılmadıysa Ayarlar → Bağlantı →
+     RFID Okuyucular'dan kapatın. Açma/kapama anları Alarm Log'a kaydedilir.</td></tr>
+<tr><td class="k">“Sistem saati İLERİ/GERİ alındı” uyarısı ne?</td>
+ <td>Program, bilgisayar saatinin aniden ileri veya geri kaydırıldığını tespit ederse Alarm
+     Log'a kaydeder ve uyarı gösterir (günlük limitlerin saat oynatılarak aşılmasına karşı).
+     Meşru bir saat düzeltmesi yaptıysanız uyarıyı dikkate almayabilirsiniz; kayıt bilgi
+     amaçlıdır, hiçbir işlemi durdurmaz.</td></tr>
 </table>
 
-<div class="son">FuelIXpro v2.0.0 &nbsp;·&nbsp; FuelIXpro Kullanım Kılavuzu &nbsp;·&nbsp; Belge Sürümü 2.0 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
+<div class="son">FuelIXpro v2.0.4 &nbsp;·&nbsp; FuelIXpro Kullanım Kılavuzu &nbsp;·&nbsp; Belge Sürümü 2.0 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
 </div></body></html>
