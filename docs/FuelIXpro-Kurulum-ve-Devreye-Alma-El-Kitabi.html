@@ -145,7 +145,10 @@ Ana ekranın bölümleri:</p>
 <tr><td class="k">BYPASS AKTİF (turuncu)</td><td>En az bir pompada RFID <b>bypass</b> açık demektir: o pompalarda kart sorulmadan
     yetki verilir, satışlar “Kartsız Kullanıcı” olarak kaydedilir ve günlük limit uygulanmaz. Bypass açılıp kapatıldığı anlar
     Alarm Log'a kalıcı olarak kaydedilir (tür: <b>Bypass</b>). Normalde görünmez.</td></tr>
-<tr><td class="k">Bağlantı noktaları</td><td>Pompa(bus A/B) · Probe · RFID için yeşil/kırmızı nokta (yeşil = bağlı).</td></tr>
+<tr><td class="k">Bağlantı noktaları</td><td>Pompa(bus A/B) · Probe · RFID için durum noktası. Probe ve RFID noktaları
+    cihaz sağlığını gösterir (v2.0.4): <b>sabit yeşil</b> = izlenen cihazların tümü yanıt veriyor; <b>4 sn yeşil / 2 sn
+    kırmızı yanıp sönme</b> = bir kısmı yanıt vermiyor (hangisi olduğu tank X'i / Alarm Log'dan görülür); <b>sabit
+    kırmızı</b> = hiçbiri yanıt vermiyor veya port kapalı. Bypass'lı okuyucular sayıma girmez.</td></tr>
 <tr><td class="k">Veri Klasörü (buton)</td><td>Ayar/DB/rapor/yedek dosyalarının bulunduğu klasörü açar.</td></tr>
 <tr><td class="k">Ayarlar (buton)</td><td>Yönetici parolasıyla Ayarlar penceresini açar.</td></tr>
 </table>
@@ -315,7 +318,9 @@ yedek, sıfırlama, geri yükleme) Bölüm 9–10–12'de ayrıntılı anlatıl�
 <p>Ayarları kaydedip Ayarları kapatın. Şimdi her cihazın gerçekten konuştuğunu doğrulayın.</p>
 <h2>6.1 Başlık göstergeleri</h2>
 <p>Üst başlıkta her hat için bir nokta vardır: <b>yeşil = bağlı</b>, kırmızı = bağlantı yok. Pompa
-panelindeki sağ üst nokta da pompa bazlıdır.</p>
+panelindeki sağ üst nokta da pompa bazlıdır. Probe ve RFID noktaları cihaz <b>sağlığını</b> gösterir
+(v2.0.4): tümü yanıt veriyorsa sabit yeşil; <b>bir kısmı</b> yanıt vermiyorsa <b>4 sn yeşil / 2 sn
+kırmızı</b> yanıp söner (kopuğu tank X'i / Alarm Log gösterir); hiçbiri yanıt vermiyorsa sabit kırmızı.</p>
 <h2>6.2 Comm Log ile RX/TX izleme (ayrıntılı)</h2>
 <p>Ayarlar → <b>Comm Log</b> sekmesi, seri portlardaki ham trafiği (her satır: <i>saat; aygıt; port;
 YÖN: veri</i>) canlı gösterir. Bir cihazın gerçekten konuşup konuşmadığını anlamanın en kesin yoludur.</p>
