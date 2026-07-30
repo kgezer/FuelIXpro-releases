@@ -90,7 +90,7 @@ tr:nth-child(even) td{ background:#f4f7f9; }
   <div class="alt">Günlük Kullanım Rehberi</div>
   <div class="kutu">
     <div class="bilgi">Belge Sürümü: <b>3.1</b> &nbsp;·&nbsp;
-      Yazılım Sürümü: <b>FuelIXpro v2.0.7</b></div>
+      Yazılım Sürümü: <b>FuelIXpro v2.0.8</b></div>
     <div class="bilgi">Temmuz 2026</div>
   </div>
   <div class="firma">LEGEND TECHNOLOGIES</div>
@@ -307,8 +307,9 @@ açıksa e-posta).</p>
 <div class="cal danger"><div class="cal-b">⛔ En önemli kural: bu bir ŞÜPHE uyarısıdır</div><div class="cal-g">Alarm, 'tankta kesin sızıntı var' anlamına GELMEZ; 'açıklayamadığım bir fark görüyorum, kontrol edin' anlamına gelir. Farkın geçerli ve masum nedenleri olabilir: <b>programa kaydedilmeden yapılmış tanker boşaltımı</b> (en sık neden), probe ayar/kalibrasyon hatası, geçici ölçüm arızası, tankerin eksik teslimatı. Alarm geldiğinde: <b>1)</b> ACK'leyin, <b>2)</b> çubukla elle ölçün ve tank çevresine bakın, <b>3)</b> su seviyesi artışı var mı kontrol edin, <b>4)</b> kayıt dışı dolum/satış sorgulayın, <b>5)</b> yetkilinize haber verin. Alarm <b>her gün tekrar ediyorsa</b> gerçek sızıntı ihtimali güçlüdür — sızdırmazlık testi yaptırın.</div></div>
 <h3>10.1 Nasıl açılır?</h3>
 <ol class="adim">
-<li><b>Ayarlar → Kaçak Tespiti</b> sekmesi → <b>"Kaçak/kayıp tespitini etkinleştir"</b> +
-izlenecek tankların <b>Aktif</b> kutuları.</li>
+<li><b>Ayarlar → Kaçak Tespiti</b> sekmesi → <b>"Kaçak/kayıp tespitini etkinleştir"</b> ve/veya
+<b>"Su girişi tespitini etkinleştir (ayrı master)"</b> + izlenecek tankların <b>Aktif</b> kutuları.
+(İki tespit bağımsızdır: yalnız su, yalnız kaçak veya ikisi birden açılabilir.)</li>
 <li>Varsayılan eşikler çoğu istasyon için uygundur: Tolerans <b>100 LT</b> (probe'un doğal
 dalgalanma payı), Tolerans <b>%0.5</b> (satış hacmiyle büyüyen pay), Debounce <b>3 okuma</b>
 (~15 dk ısrar şartı — tek seferlik ölçüm sıçraması alarm üretmez).</li>
@@ -319,8 +320,16 @@ dalgalanma payı), Tolerans <b>%0.5</b> (satış hacmiyle büyüyen pay), Deboun
 elle <b>"Referansı Sıfırla"</b> ile. Bu yüzden <b>her tanker boşaltımının Tank Dolum
 Prosesi'nden kaydedilmesi şarttır</b> — kaydedilmezse tablo "fazlalık" (negatif fark) gösterir
 ve gerçek bir kayıp gizlenebilir.</p>
-<h3>10.2 Su girişi uyarısı</h3>
-<p>Kaçak tespiti açık her tank için program, probe'un ölçtüğü <b>su seviyesini</b> de izler. Su, önceki okumaya göre ayarlanan eşikten (varsayılan <b>10 mm</b>) fazla artarsa Alarm Log'a <b>“Su Girişi işareti: Tank N, su X mm”</b> satırı düşer; E-posta sekmesinde “Su Girişi” türü açıksa bildirim de gider. Su girişi ciddiye alınmalıdır — yakıta su karışması araçlara zarar verebilir ve bir sızıntının işareti olabilir. Eşik, Ayarlar → Kaçak Tespiti sekmesindeki <b>“Su Eşiği (mm)”</b> sütunundan tank başına ayarlanır. (Bu uyarı siren çalmaz; kalıcı denetim izidir.)</p>
+<h3>10.2 Su girişi alarmı</h3>
+<p><b>Su girişi tespiti</b> açık her aktif tankta, program probe'un ölçtüğü <b>su seviyesini</b>
+izler. Su, o tankın <b>su referans seviyesinin</b> ayarlanan eşik (varsayılan <b>30 mm</b>) kadar
+üstüne çıkarsa <b>gerçek bir alarm</b> açılır: ekranda banner + <b>siren</b> + Alarm Log'da kırmızı
+satır (+ E-posta'da “Su Girişi” türü açıksa bildirim). Eşik, ardışık iki okuma farkı değil, sabit
+referansa göre <b>birikimli</b> ölçülür — su ister ani ister yavaş yükselsin yakalanır.</p>
+<div class="cal warn"><div class="cal-b">⚠️ Su alarmı KALICIDIR — sireni kesmek için 'Alarmı Sustur'</div><div class="cal-g">Su tank dibinde birikir ve <b>satışla/dolumla azalmaz</b>; yalnız dipten drenajla iner. Bu yüzden alarm, siz suyu fiziksel olarak alana kadar açık kalır (normaldir). Sireni durdurmak için <b>Alarm Log → Alarm ACK → Sustur</b>: kırmızı satır ve üçgen durur, siren her turda yeniden çalmaz. Su alındıktan sonra alarm kendiliğinden çözülür. (Eşiği yükselterek susturmayın — yanıltıcı olur.)</div></div>
+<p>Su girişi ciddiye alınmalıdır — yakıta su karışması araçlara zarar verebilir ve bir sızıntının
+işareti olabilir. Eşik, Ayarlar → Kaçak Tespiti sekmesindeki <b>“Su Eşiği (mm)”</b> sütunundan tank
+başına ayarlanır.</p>
 <h3>10.3 Yöntemin dayanağı</h3>
 <p>FuelIXpro'nun kaçak tespiti, akaryakıt tanklarında uluslararası kabul görmüş <b>stok
 mutabakatı ve sızıntı tespiti</b> (wetstock reconciliation and leak detection) ilkelerine
@@ -568,5 +577,5 @@ bilgisidir. Yeni bir tabanca kaldırdığınızda mesaj temizlenir ve normal ça
      amaçlıdır, hiçbir işlemi durdurmaz.</td></tr>
 </table>
 
-<div class="son">FuelIXpro v2.0.7 &nbsp;·&nbsp; FuelIXpro Kullanım Kılavuzu &nbsp;·&nbsp; Belge Sürümü 3.1 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
+<div class="son">FuelIXpro v2.0.8 &nbsp;·&nbsp; FuelIXpro Kullanım Kılavuzu &nbsp;·&nbsp; Belge Sürümü 3.1 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
 </div></body></html>
