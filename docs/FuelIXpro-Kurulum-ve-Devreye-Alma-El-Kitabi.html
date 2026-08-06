@@ -90,7 +90,7 @@ tr:nth-child(even) td{ background:#f4f7f9; }
   <div class="alt">Başlangıç Seviyesi İçin Adım Adım — Kurulum · Devreye Alma · Sorun Giderme</div>
   <div class="kutu">
     <div class="bilgi">Belge Sürümü: <b>3.2</b> &nbsp;·&nbsp;
-      Yazılım Sürümü: <b>FuelIXpro v2.0.10</b></div>
+      Yazılım Sürümü: <b>FuelIXpro v2.0.12</b></div>
     <div class="bilgi">Temmuz 2026</div>
   </div>
   <div class="firma">LEGEND TECHNOLOGIES</div>
@@ -204,20 +204,20 @@ olmadan ayar adımlarında takılırsınız.</p>
 <div class="cal tip"><div class="cal-b">✅ Probe seri numarasını nereden bulurum?</div><div class="cal-g">Probe cihazının etiketinde veya kendi menüsünde yazılıdır. Yanlış seri no girilirse o tank “veri yok (X)” görünür. Emin değilseniz tankları tek tek deneyip Comm Log'dan yanıtı doğrulayın (Bölüm 6).</div></div>
 
 <h2>2.3 Kurulum dosyası</h2>
-<p>Üreticiden gelen <b>FuelIXpro-Setup-2.0.10.exe</b> dosyasını bilgisayara kopyalayın
-(USB bellek veya indirme). macOS için <b>FuelIXpro-2.0.10.dmg</b>.</p>
+<p>Üreticiden gelen <b>FuelIXpro-Setup-2.0.12.exe</b> dosyasını bilgisayara kopyalayın
+(USB bellek veya indirme). macOS için <b>FuelIXpro-2.0.12.dmg</b>.</p>
 
 <h1 class="bol" id="b3"><span class="no">3.</span> Yazılımın Kurulumu (Windows / macOS)</h1>
 <h2>3.1 Windows (önerilen)</h2>
 <ol class="adim">
-<li><b>FuelIXpro-Setup-2.0.10.exe</b>'ye çift tıklayın. <b>Yönetici yetkisi GEREKMEZ</b> —
+<li><b>FuelIXpro-Setup-2.0.12.exe</b>'ye çift tıklayın. <b>Yönetici yetkisi GEREKMEZ</b> —
    kullanıcı bazlı kurar (<code>%LOCALAPPDATA%\Programs\FuelIXpro</code>).</li>
 <li>“Masaüstü kısayolu oluştur” seçeneğini işaretleyin, <b>İleri → Kur</b> deyip bitirin.</li>
 <li>Kurulum biter; masaüstündeki <b>FuelIXpro</b> simgesiyle açabilirsiniz.</li>
 </ol>
 <div class="cal note"><div class="cal-b">ℹ️ Veriler nereye yazılır? (önemli)</div><div class="cal-g">Ayarlar, veritabanı ve raporlar <b>exe'nin yanına değil</b>, kullanıcı bazlı yazılabilir dizine yazılır:<br><code>%LOCALAPPDATA%\Legend Technologies\FuelIXpro</code><br>Bu sayede Program Files gibi korumalı bir yere kurulsa bile yazma sorunu olmaz ve yönetici gerekmez. Üst başlıktaki <b>“Veri Klasörü”</b> butonu bu klasörü doğrudan açar — yedek ve rapor bulmak için kullanın.</div></div>
 <h2>3.2 macOS</h2>
-<p><b>FuelIXpro-2.0.10.dmg</b>'i açıp <code>FuelIXpro.app</code>'i Applications'a sürükleyin.
+<p><b>FuelIXpro-2.0.12.dmg</b>'i açıp <code>FuelIXpro.app</code>'i Applications'a sürükleyin.
 İmzasız olduğu için ilk açılışta <b>sağ tık → Aç</b> deyin. Veri konumu:
 <code>~/Library/Application Support/Legend Technologies/FuelIXpro</code>.</p>
 <div class="cal warn"><div class="cal-b">⚠️ Tek kopya çalışır — birden çok tıklamayın</div><div class="cal-g">Simgeye tıklayınca uygulama birkaç saniyede açılır (bir açılış/“splash” ekranı görünür). Program <b>aynı anda yalnız bir kez</b> çalışır; üst üste tıklasanız bile ikinci pencere açılmaz, var olan öne gelir. Sabırla bir kez tıklayın.</div></div>
@@ -447,7 +447,7 @@ karşı düzenli yedek şarttır. Tüm yedekleme işlemleri <b>Ayarlar → Verit
 <tr><td class="k">Dart pompası: canlı litre/tutar görünmüyor (satış sonunda geliyor)</td>
  <td>Bazı Dart pompaları canlı hacmi kendiliğinden yollamaz; program bunu ~0.5 sn'de bir <b>RETURN
      FILLING</b> ile çeker (v2.0'da otomatik). Görünmüyorsa yeni sürümü çalıştırdığınızdan emin olun
-     (v2.0.10) ve dolum sırasında Comm Log'da <code>50 30 01 01 04</code> (RETURN FILLING) TX'ini doğrulayın.</td></tr>
+     (v2.0.12) ve dolum sırasında Comm Log'da <code>50 30 01 01 04</code> (RETURN FILLING) TX'ini doğrulayın.</td></tr>
 <tr><td class="k">Tankta kırmızı “X” (veri yok)</td>
  <td>Probe yanıt vermiyor: <b>seri no yanlış</b>, kablo veya probe kapalı. ~10–12 sn yanıt gelmezse
      işaretlenir ve Alarm Log'da “<b>Probe N</b>” açılır. Seri no'yu ve hattı doğrulayın.</td></tr>
@@ -924,7 +924,7 @@ yanıt vermiyor). Yanıp sönme gördüğünüzde Alarm Log'a bakıp hangi cihaz
 <tr><td>☐</td><td>Windows bilgisayar hazır, ekran ≥ 1366×768</td></tr>
 <tr><td>☐</td><td>Pompa / Probe / RFID için USB–RS485 çeviriciler takıldı, COM no'ları not edildi</td></tr>
 <tr><td>☐</td><td>RS-485 hatları çekildi, sonlandırma yapıldı</td></tr>
-<tr><td>☐</td><td>FuelIXpro-Setup-2.0.10.exe bilgisayarda</td></tr>
+<tr><td>☐</td><td>FuelIXpro-Setup-2.0.12.exe bilgisayarda</td></tr>
 <tr><td>☐</td><td>A.4 bilgi formu dolduruldu</td></tr>
 </table>
 <h2>A.2 Devreye alma kontrol listesi</h2>
@@ -981,5 +981,5 @@ yanıt vermiyor). Yanıp sönme gördüğünüzde Alarm Log'a bakıp hangi cihaz
 <tr><td class="k">Üretici firma adı</td><td>Ana ekran sağ üst (sarı) — <code>config.py</code> içindeki <code>URETICI_FIRMA</code> ile değiştirilir (derleme öncesi)</td></tr>
 </table>
 
-<div class="son">FuelIXpro v2.0.10 &nbsp;·&nbsp; FuelIXpro Kurulum ve Devreye Alma El Kitabı &nbsp;·&nbsp; Belge Sürümü 3.2 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
+<div class="son">FuelIXpro v2.0.12 &nbsp;·&nbsp; FuelIXpro Kurulum ve Devreye Alma El Kitabı &nbsp;·&nbsp; Belge Sürümü 3.2 &nbsp;·&nbsp; Temmuz 2026 &nbsp;·&nbsp; © Legend Technologies</div>
 </div></body></html>
